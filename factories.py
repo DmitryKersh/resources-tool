@@ -129,7 +129,7 @@ FACTORY_INSECTICIDE_CONTRACT = FactoryContract(FACTORY_INSECTICIDE_UP, FACTORY_I
 FACTORY_PLASTIC_UP = FactoryUpgradeRequirement([
     ResourceRequirement(RES_ALUMINUM, 500),
     ResourceRequirement(RES_STEEL, 1000),
-    ResourceRequirement(RES_CONCRETE, 916000),
+    ResourceRequirement(RES_CONCRETE, 16000),
     ResourceRequirement(RES_MONEY, 50000000),
 ])
 FACTORY_PLASTIC_IN = [
