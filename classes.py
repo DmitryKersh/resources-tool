@@ -34,7 +34,7 @@ def topNforUpgrade(curr_list: list[Factory], N: int):
     okups = [calc_upgrade_okup_time(fac) for fac in curr_list]
     for x in range(N):
         idx = okups.index(min(okups))
-        ret.append(f"{curr_list[idx].name:<12}{curr_list[idx].lvl + 1:<4}: {round(okups[idx], 1)} hours")
+        ret.append(f"{curr_list[idx].name:<12}{curr_list[idx].lvl + 1:<4}: {round(okups[idx], 1)} hours "  + str_speed_mult(curr_list[idx]))
         curr_list[idx].lvl += 1
         okups[idx] = calc_upgrade_okup_time(curr_list[idx])
     return ret
@@ -47,7 +47,7 @@ def bestConfig(curr_list: list[Factory], upgrade_count: int):
         idx = okups.index(min(okups))
         curr_list[idx].lvl += 1
         okups[idx] = calc_upgrade_okup_time(curr_list[idx])
-    return [f"{fac.name:<12}: {fac.lvl}" for fac in curr_list]
+    return [f"{fac.name:<12}: {fac.lvl} " + str_speed_mult(fac) for fac in curr_list]
 
 def calc_hour_profit_1lvl(contract: FactoryContract):
     in_val = sum([resreq.res.price * resreq.amount for resreq in contract.req])
@@ -59,3 +59,6 @@ def calc_upgrade_cost(upgrade_req: FactoryUpgradeRequirement, target_lvl: int):
 
 def calc_upgrade_okup_time(fac: Factory):
     return calc_upgrade_cost(fac.contract.upgrade_req, fac.lvl + 1) / (calc_hour_profit_1lvl(fac.contract) * fac.speed_mult)
+
+def str_speed_mult(fac: Factory):
+    return f"(speed x{fac.speed_mult})" if fac.speed_mult != 1 else ""
