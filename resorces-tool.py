@@ -24,15 +24,15 @@ FACTORY_DRONE = Factory('drone', FACTORY_DRONE_CONTRACT, 0)
 FACTORY_JEWELLERY = Factory('jewellery', FACTORY_JEWELLERY_CONTRACT, 0)
 
 factories = [
-    FACTORY_CONCRETE,
     FACTORY_BRICKS,
-    FACTORY_FUEL,
-    FACTORY_COPPER,
-    FACTORY_ALUMINUM,
-    FACTORY_MEDTECH,
+    FACTORY_CONCRETE,
+    FACTORY_FERTILIZER,
     FACTORY_STEEL,
+    FACTORY_FUEL,
     FACTORY_GLASS,
+    FACTORY_COPPER,
     FACTORY_INSECTICIDE,
+    FACTORY_ALUMINUM,
     FACTORY_PLASTIC,
     FACTORY_LITHIUM,
     FACTORY_ACCUMULATOR,
@@ -40,13 +40,24 @@ factories = [
     FACTORY_SILICON,
     FACTORY_CIRCUITRY,
     FACTORY_TITANIUM,
+    FACTORY_MEDTECH,
     FACTORY_SILVER,
     FACTORY_GOLD,
-    FACTORY_FERTILIZER,
-    FACTORY_TRUCKS,
-    FACTORY_DRONE,
     FACTORY_JEWELLERY,
+    FACTORY_DRONE,
+    FACTORY_TRUCKS,
 ]
+hint = '''
+1 = Топ N заводов
+2 = Лучшее соотношение с нуля за N апов
+'''
 
-for s in topNforUpgrade(factories, int(input("Топ сколько показать?"))):
-    print(s)
+match input(hint):
+    case '1':
+        for s in topNforUpgrade(factories, int(input("Топ сколько показать?"))):
+            print(s)
+    case '2':
+        for s in bestConfig(factories, int(input("Сколько апов?"))):
+            print(s)
+    case _:
+        print("неизв. команда")

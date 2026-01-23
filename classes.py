@@ -39,6 +39,16 @@ def topNforUpgrade(curr_list: list[Factory], N: int):
         okups[idx] = calc_upgrade_okup_time(curr_list[idx])
     return ret
 
+def bestConfig(curr_list: list[Factory], upgrade_count: int):
+    for fac in curr_list:
+        fac.lvl = 0
+    okups = [calc_upgrade_okup_time(fac) for fac in curr_list]
+    for x in range(upgrade_count):
+        idx = okups.index(min(okups))
+        curr_list[idx].lvl += 1
+        okups[idx] = calc_upgrade_okup_time(curr_list[idx])
+    return [f"{fac.name:<12}: {fac.lvl}" for fac in curr_list]
+
 def calc_hour_profit_1lvl(contract: FactoryContract):
     in_val = sum([resreq.res.price * resreq.amount for resreq in contract.req])
     out_val = contract.output.amount * contract.output.res.price
