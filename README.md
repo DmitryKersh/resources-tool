@@ -4,7 +4,7 @@
 
 `pyinstaller --onefile --icon=favicon.ico resources-tool.py`
 
-### Запуск
+### Первый запуск
 
 УЖЕ СОБРАННЫЙ EXE лежит в `dist`
 
