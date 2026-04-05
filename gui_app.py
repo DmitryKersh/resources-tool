@@ -244,14 +244,17 @@ class ResourcesToolApp(tk.Tk):
         self.tab_calc = ttk.Frame(self.notebook, padding=10)
         self.tab_factories = ttk.Frame(self.notebook, padding=10)
         self.tab_resources = ttk.Frame(self.notebook, padding=10)
+        self.tan_authors = ttk.Frame(self.notebook, padding=10)
 
         self.notebook.add(self.tab_calc, text="Расчёты")
         self.notebook.add(self.tab_factories, text="Заводы")
         self.notebook.add(self.tab_resources, text="Ресурсы")
+        self.notebook.add(self.tan_authors, text="Авторы")
 
         self._build_calc_tab()
         self._build_factories_tab()
         self._build_resources_tab()
+        self._build_authors_tab()
 
     def _build_calc_tab(self) -> None:
         top = ttk.Frame(self.tab_calc)
@@ -330,6 +333,9 @@ class ResourcesToolApp(tk.Tk):
 
         ttk.Button(editor, text="Применить", command=self.on_factory_apply).grid(row=0, column=6, padx=6)
         ttk.Button(editor, text="Сбросить выделенный", command=self.on_factory_reset_selected).grid(row=0, column=7, padx=6)
+
+    def _build_authors_tab(self) -> None:
+        ttk.Label(self.tan_authors, text="calculations - FinalTry\nGUI - egoryanasy", style="SubHeader.TLabel").pack(anchor="w", pady=(0, 10))
 
     def _build_resources_tab(self) -> None:
         ttk.Label(self.tab_resources, text="Настройка цен ресурсов", style="SubHeader.TLabel").pack(anchor="w", pady=(0, 8))
